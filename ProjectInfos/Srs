@@ -1,0 +1,80 @@
+ SRS – Software Requirements Specification
+
+Nom du projet : EJoutiya
+Type : Plateforme e-commerce Multi-Vendor
+Stack : React (Frontend) + Laravel (Backend) + PostgreSQL/MySQL (Database) + Stripe/PayPal/CMI
+
+1. Contexte
+
+EJoutiya est une plateforme multi-vendeurs inspirée de YouCan et WordPress, adaptée au marché marocain.
+Objectif : permettre à des vendeurs de créer leur propre mini-marché et aux clients d’acheter des produits facilement.
+
+2. Acteurs et rôles
+Acteur	Rôle
+Guest	Parcourir le marché, voir les magasins et produits
+Client	Auth, panier, commandes, paiement, suivi des commandes
+Vendor	Création et gestion du magasin, produits, suivi commandes
+Admin	Gestion utilisateurs, magasins, produits, commandes, système
+3. Fonctionnalités
+Guest
+
+Parcourir Home, About
+
+Consulter Market (liste magasins)
+
+Voir Store (produits d’un magasin)
+
+Détails produit (Modal)
+
+Client
+
+Auth (Register / Login)
+
+Ajouter / supprimer produits du panier
+
+Passer commande / Paiement
+
+Suivi commandes
+
+Vendor
+
+Créer / modifier / supprimer magasin
+
+Ajouter / modifier / supprimer produits
+
+Voir commandes et statistiques
+
+Admin
+
+Gestion complète de tous les utilisateurs, magasins, produits et commandes
+
+4. Exigences non-fonctionnelles
+
+Frontend : React SPA + TailwindCSS
+
+Backend : Laravel API REST
+
+Base de données : PostgreSQL ou MySQL
+
+Auth : Laravel Sanctum / JWT
+
+Paiements : Stripe / PayPal / CMI / COD
+
+Performance : mobile-first, rapide et responsive
+
+SEO : multilingue FR / AR / EN
+
+5. APIs principales
+Endpoint	Méthode	Rôle	Description
+/register	POST	Client	Créer compte
+/login	POST	Client/Vendor/Admin	Authentification
+/profile	GET/PUT	Client/Vendor	Infos utilisateur
+/stores	GET	Guest/Client	Liste magasins
+/stores/{id}	GET	Guest/Client	Détails magasin
+/products/{id}	GET	Guest/Client	Détails produit
+/cart	GET/POST/PUT/DELETE	Client	Gérer panier
+/orders	GET/POST	Client/Vendor/Admin	Créer / lister commandes
+/vendor/products	GET/POST/PUT/DELETE	Vendor	CRUD produits
+/admin/users	GET/POST/PUT/DELETE	Admin	Gestion utilisateurs
+/payments/checkout	POST	Client	Paiement
+/payments/webhook	POST	Backend	Confirmation paiement

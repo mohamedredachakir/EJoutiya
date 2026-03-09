@@ -1,0 +1,130 @@
+EJoutiya
+Nom du projet : EJoutiya
+Type de projet : Plateforme E-commerce Multi-Vendor
+Stack proposé : React (Frontend) + Laravel (Backend) + PostgreSQL/MySQL (Database) + Stripe/PayPal/CMI (Payments)
+
+1 Contexte du projet
+EJoutiya est une plateforme multi-vendeurs inspirée des plateformes YouCan et WordPress, adaptée au marché marocain.
+Chaque vendeur (Vendor) crée son propre magasin (Mini Market / Garage) et ajoute ses produits.
+Les clients (Client) peuvent parcourir les magasins, visualiser les produits et effectuer des achats.
+Les administrateurs (Admin) supervisent l’ensemble du système et gèrent les utilisateurs, magasins, produits et commandes.
+Les visiteurs (Guest) peuvent uniquement naviguer et consulter le marché et les produits.
+Objectifs principaux :
+Offrir une plateforme sécurisée et performante pour le marché marocain.
+Fournir une interface intuitive pour chaque type d’utilisateur.
+Supporter différentes méthodes de paiement, y compris Cash on Delivery (COD).
+Être responsive pour mobile (plus de 70% des utilisateurs au Maroc naviguent via mobile).
+
+2 Acteurs et rôles
+Acteur
+|   Rôle / Actions
+Guest
+Consulter la page Home/About, parcourir le Market et les Stores, voir les détails des produits (Modal)
+Client
+S’inscrire / se connecter, ajouter des produits au panier, passer commande, payer, suivre les commandes
+Vendor
+Créer et gérer son magasin, ajouter/modifier/supprimer des produits, suivre les commandes et ventes
+Admin
+Gérer tous les utilisateurs, magasins, produits et commandes, configurer le système
+
+
+3 Pages / Navigation
+Public Pages (Guest)
+Home + About
+Market → liste de tous les mini-marchés
+Store → page d’un magasin et ses produits
+Product Modal → détails du produit en popup
+Auth Pages
+Login
+Register
+Account
+Client Panel
+Cart / Checkout
+Orders
+Profile / Account
+Vendor Panel
+Dashboard
+Store View (avec Modals)
+Products Management
+Orders Management
+Admin Panel
+Dashboard
+Users Management
+Stores Management
+Products Management
+Orders Management
+System Settings
+
+4 Fonctionnalités principales (FR)
+Pour tous (Guest)
+Navigation sur le site et consultation du marché
+Visualisation des magasins et produits
+Pour Client
+Authentification / inscription
+Ajout / suppression produits au panier
+Passer commande / paiement
+Suivi des commandes
+Pour Vendor
+Créer son magasin
+Ajouter / modifier / supprimer des produits
+Suivi des commandes et statistiques de ventes
+Pour Admin
+Gestion des utilisateurs (Client / Vendor)
+Gestion des magasins et produits
+Gestion des commandes et transactions
+Configuration du système
+
+5 Exigences non fonctionnelles (NFR)
+Frontend : React SPA + TailwindCSS
+Backend : Laravel API REST
+Base de données : PostgreSQL ou MySQL
+Auth & Security : Laravel Sanctum ou JWT
+Performance : Chargement rapide, optimisé mobile
+SEO : Support multilingue (FR / AR / EN), contenu indexable
+Paiements : Stripe / PayPal / CMI / COD
+DevOps : Docker + CI/CD + CDN (Cloudflare ou similaire)
+
+6 Base de données (ERD simplifiée)
+Tables principales :
+users → id, name, email, password, role (client/vendor/admin)
+stores → id, vendor_id, name, description, logo
+products → id, store_id, name, price, stock, description, image
+orders → id, client_id, total_price, status, created_at
+order_items → id, order_id, product_id, quantity, price
+cart_items → id, client_id, product_id, quantity
+Relations :
+Users (Vendor) 1 → N Stores
+Stores 1 → N Products
+Users (Client) 1 → N Orders
+Orders 1 → N OrderItems
+
+7 Mock Data (pour le Frontend SPA)
+users.json → données utilisateurs
+stores.json → données des magasins
+products.json → données des produits
+orders.json → données des commandes
+
+8 Paiement et Transactions
+Stripe / PayPal pour les paiements en ligne
+CMI / NAPS pour le marché marocain
+Cash on Delivery (COD) pour les clients préférant paiement à la livraison
+Webhook / confirmation pour chaque paiement
+
+9 Future Features / Améliorations
+Système de notation et avis pour produits et magasins
+Coupons et promotions
+Recherche avancée et filtres
+Chat Client ↔ Vendor
+Recommandations intelligentes (AI)
+Multi-langues avancé (FR / AR / EN)
+
+10 Architecture recommandée
+Frontend React SPA pour Market / Store / Dashboard
+Backend Laravel API REST pour tous les endpoints
+Database PostgreSQL/MySQL pour Users / Stores / Products / Orders
+Payments Stripe / PayPal / CMI avec Webhooks
+Dockerized setup pour développement et déploiement
+CI/CD + CDN pour production
+
+
+

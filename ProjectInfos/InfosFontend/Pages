@@ -1,0 +1,23 @@
+
+
+public pages :
+
+home with about 
+market -> all mini markets
+store -> one store and all products
+product -> one product details (modal not page)
+
+auth pages : 
+login 
+register
+account
+
+
+-------
+
+client panel
+
+store dashboard 
+store view (with modals)
+
+admin dashboard

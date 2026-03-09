@@ -1,0 +1,25 @@
+ERD – Entity Relationship Diagram (simplifié)
+
+Entités principales :
+
+users → id, name, email, password, role (client/vendor/admin)
+
+stores → id, vendor_id, name, description, logo
+
+products → id, store_id, name, price, stock, description, image
+
+orders → id, client_id, total_price, status, created_at
+
+order_items → id, order_id, product_id, quantity, price
+
+cart_items → id, client_id, product_id, quantity
+
+Relations :
+
+Users (Vendor) 1 → N Stores
+
+Stores 1 → N Products
+
+Users (Client) 1 → N Orders
+
+Orders 1 → N OrderItems

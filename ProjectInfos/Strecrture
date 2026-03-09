@@ -1,0 +1,31 @@
+EJoutiya/
+│
+├── backend/ (Laravel API)
+│   ├── app/
+│   │   ├── Models/ (User, Store, Product, Order, OrderItem, CartItem)
+│   │   └── Http/Controllers/ (AuthController, UserController, StoreController, ProductController, OrderController, PaymentController)
+│   ├── routes/api.php
+│   ├── database/migrations/
+│   ├── database/seeders/ (Mock Data)
+│   └── config/
+│
+├── frontend/ (React SPA)
+│   ├── public/
+│   ├── src/
+│   │   ├── assets/ (images, styles)
+│   │   ├── components/ (Navbar, Footer, ProductCard, StoreCard, Modal)
+│   │   ├── pages/
+│   │   │   ├── Home.jsx
+│   │   │   ├── Market.jsx
+│   │   │   ├── Store.jsx
+│   │   │   ├── Auth/ (Login.jsx, Register.jsx, Account.jsx)
+│   │   │   ├── Client/ (Cart.jsx, Orders.jsx, Profile.jsx)
+│   │   │   ├── Vendor/ (Dashboard.jsx, StoreView.jsx, Products.jsx, Orders.jsx)
+│   │   │   └── Admin/ (Dashboard.jsx, Users.jsx, Stores.jsx, Products.jsx, Orders.jsx, Settings.jsx)
+│   │   ├── context/ (UserContext.js, CartContext.js)
+│   │   └── services/ (api.js pour appels Axios)
+│   └── package.json
+│
+├── docker-compose.yml
+├── README.md
+└── .env
