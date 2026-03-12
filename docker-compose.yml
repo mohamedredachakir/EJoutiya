@@ -9,7 +9,6 @@ services:
     container_name: backend-php
     volumes:
       - "./backend:/var/www/html"
-      - "/var/www/html/vendor"
     working_dir: /var/www/html
     depends_on:
       - postgres
