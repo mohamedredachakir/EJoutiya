@@ -4,29 +4,81 @@ Ce document détaille les migrations, modèles, relations, contrôleurs et route
 
 ## 1. Migrations & Modèles
 
-### User (Table: `users`)
-- **Champs:** `name`, `email`, `password`, `role` (enum: client, vendor, admin), `profile_image`.
+### 1.1 User (Table: `users`)
+- **Fichier:** `0001_01_01_000000_create_users_table.php` (Défaut Laravel)
 - **Modèle:** `User.php`
+- **Propriétés:**
+    - `id` (Primary Key)
+    - `name` (string)
+    - `email` (string, unique)
+    - `password` (string)
+    - `role` (enum: 'client', 'vendor', 'admin', default: 'client')
+    - `profile_image` (string, nullable)
+    - `email_verified_at` (timestamp, nullable)
+    - `remember_token` (string, nullable)
+    - `timestamps`
 
-### Store (Table: `stores`)
-- **Champs:** `vendor_id` (FK), `name`, `slug` (unique), `description`, `logo`, `banner`, `is_active` (boolean).
+### 1.2 Store (Table: `stores`)
+- **Fichier:** `2024_03_12_000001_create_stores_table.php`
 - **Modèle:** `Store.php`
+- **Propriétés:**
+    - `id` (Primary Key)
+    - `vendor_id` (foreignId -> users, constrained, onDelete cascade)
+    - `name` (string)
+    - `slug` (string, unique)
+    - `description` (text, nullable)
+    - `logo` (string, nullable)
+    - `banner` (string, nullable)
+    - `is_active` (boolean, default: true)
+    - `timestamps`
 
-### Product (Table: `products`)
-- **Champs:** `store_id` (FK), `category_id` (FK - optionnel), `name`, `slug`, `description`, `price` (decimal), `stock` (integer), `image`, `is_active`.
+### 1.3 Product (Table: `products`)
+- **Fichier:** `2024_03_12_000002_create_products_table.php`
 - **Modèle:** `Product.php`
+- **Propriétés:**
+    - `id` (Primary Key)
+    - `store_id` (foreignId -> stores, constrained, onDelete cascade)
+    - `name` (string)
+    - `slug` (string, unique)
+    - `description` (text, nullable)
+    - `price` (decimal, 10, 2)
+    - `stock` (integer, default: 0)
+    - `image` (string, nullable)
+    - `is_active` (boolean, default: true)
+    - `timestamps`
 
-### Order (Table: `orders`)
-- **Champs:** `client_id` (FK), `total_price`, `status` (pending, paid, shipped, delivered, cancelled), `payment_method` (COD, Stripe, PayPal), `shipping_address`.
+### 1.4 Order (Table: `orders`)
+- **Fichier:** `2024_03_12_000003_create_orders_table.php`
 - **Modèle:** `Order.php`
+- **Propriétés:**
+    - `id` (Primary Key)
+    - `client_id` (foreignId -> users, constrained, onDelete cascade)
+    - `total_price` (decimal, 10, 2)
+    - `status` (enum: 'pending', 'paid', 'shipped', 'delivered', 'cancelled', default: 'pending')
+    - `payment_method` (string: 'COD', 'Stripe', 'PayPal')
+    - `shipping_address` (text)
+    - `timestamps`
 
-### OrderItem (Table: `order_items`)
-- **Champs:** `order_id` (FK), `product_id` (FK), `quantity`, `price` (at time of purchase).
+### 1.5 OrderItem (Table: `order_items`)
+- **Fichier:** `2024_03_12_000004_create_order_items_table.php`
 - **Modèle:** `OrderItem.php`
+- **Propriétés:**
+    - `id` (Primary Key)
+    - `order_id` (foreignId -> orders, constrained, onDelete cascade)
+    - `product_id` (foreignId -> products, constrained)
+    - `quantity` (integer)
+    - `price` (decimal, 10, 2)
+    - `timestamps`
 
-### CartItem (Table: `cart_items`)
-- **Champs:** `client_id` (FK), `product_id` (FK), `quantity`.
+### 1.6 CartItem (Table: `cart_items`)
+- **Fichier:** `2024_03_12_000005_create_cart_items_table.php`
 - **Modèle:** `CartItem.php`
+- **Propriétés:**
+    - `id` (Primary Key)
+    - `client_id` (foreignId -> users, constrained, onDelete cascade)
+    - `product_id` (foreignId -> products, constrained, onDelete cascade)
+    - `quantity` (integer)
+    - `timestamps`
 
 ---
 
